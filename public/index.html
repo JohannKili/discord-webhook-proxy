@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <title>NFC Scan erkannt</title>
+  <script>
+    const message = "@everyone \n⚠️ NFC-Tag wurde gescannt!\nJemand steht an der Tür!";
+
+    fetch("/api/send", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message })
+    })
+    .then(() => {
+      document.getElementById("status").innerText = "✅ Nachricht gesendet!";
+    })
+    .catch(() => {
+      document.getElementById("status").innerText = "❌ Fehler beim Senden!";
+    });
+  </script>
+</head>
+<body style="font-family:sans-serif;text-align:center;margin-top:5em;">
+  <h2 id="status">⏳ Sende Benachrichtigung ...</h2>
+</body>
+</html>
